@@ -1,0 +1,29 @@
+name: my_input_component_example
+description: "Demonstrates how to use the my_input_component plugin."
+
+publish_to: "none"
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  my_input_component:
+    path: ../
+
+  cupertino_icons: any
+  intl: any
+  provider: any
+
+dev_dependencies:
+  integration_test:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: any
+
+flutter:
+  uses-material-design: true
