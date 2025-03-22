@@ -322,7 +322,13 @@ class InputComponentState<T> extends State<InputComponent<T>> {
             double parsedValue = double.tryParse(a) ?? 0.0;
             widget.onChanged(parsedValue as T);
           } else if (T == String) {
-            widget.onChanged(value as T);
+            if (widget.isPin) {
+              String parsedValue =
+                  value.length > 1 ? value[value.length - 1] : value;
+              widget.onChanged(parsedValue as T);
+            } else {
+              widget.onChanged(value as T);
+            }
           }
         });
       },
