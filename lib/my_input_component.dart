@@ -99,54 +99,48 @@ class InputComponentState<T> extends State<InputComponent<T>> {
 
   @override
   initState() {
-    if (widget.value != null) {
-      setValue();
-    }
+    setValue();
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant InputComponent<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.value != null) {
-      setValue();
-    }
+    setValue();
   }
 
   void setValue() {
-    Future.delayed(Duration.zero, () {
-      if (widget.value != null) {
-        if (T == int) {
-          var formatter = NumberFormat.decimalPatternDigits(decimalDigits: 0);
-          model.text = formatter.format(widget.value ?? 0);
-        } else if (T == double) {
-          var formatter = NumberFormat.decimalPatternDigits(
-            decimalDigits: widget.decimalDigits,
-          );
-          model.text = formatter.format(widget.value ?? 0.0);
-        } else if (T == TimeOfDay) {
-          TimeOfDay timeOfDay = widget.value as TimeOfDay;
-          model.text = "${timeOfDay.hour}:${timeOfDay.minute}";
-        } else if (T == DateTime) {
-          widget.isIncludeTime
-              ? model.text = (widget.value as DateTime).toStrings(
-                locale: widget.locale,
-                format: Formats.dateTime,
-              )
-              : model.text = (widget.value as DateTime).toStrings(
-                locale: widget.locale,
-              );
-        } else if (T == DateTimeRange) {
-          DateTimeRange date = widget.value as DateTimeRange;
-          model.text =
-              "${date.start.toStrings(locale: widget.locale)} - ${date.end.toStrings(locale: widget.locale)}";
-        } else {
-          model.text = widget.value as String;
-        }
+    if (widget.value != null) {
+      if (T == int) {
+        var formatter = NumberFormat.decimalPatternDigits(decimalDigits: 0);
+        model.text = formatter.format(widget.value ?? 0);
+      } else if (T == double) {
+        var formatter = NumberFormat.decimalPatternDigits(
+          decimalDigits: widget.decimalDigits,
+        );
+        model.text = formatter.format(widget.value ?? 0.0);
+      } else if (T == TimeOfDay) {
+        TimeOfDay timeOfDay = widget.value as TimeOfDay;
+        model.text = "${timeOfDay.hour}:${timeOfDay.minute}";
+      } else if (T == DateTime) {
+        widget.isIncludeTime
+            ? model.text = (widget.value as DateTime).toStrings(
+              locale: widget.locale,
+              format: Formats.dateTime,
+            )
+            : model.text = (widget.value as DateTime).toStrings(
+              locale: widget.locale,
+            );
+      } else if (T == DateTimeRange) {
+        DateTimeRange date = widget.value as DateTimeRange;
+        model.text =
+            "${date.start.toStrings(locale: widget.locale)} - ${date.end.toStrings(locale: widget.locale)}";
       } else {
-        model.text = "";
+        model.text = widget.value as String;
       }
-    });
+    } else {
+      model.text = "";
+    }
   }
 
   @override

@@ -156,9 +156,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         isRequired: true,
                         defaultErrorText: "Please fill",
                       ),
-                      InputComponent<int?>(
+                      InputComponent<int>(
                         onChanged: (v) {
                           vm.intNull = v;
+                          vm.commit();
                         },
                         value: vm.intNull,
                         positionLabel: PositionLabel.top,
@@ -220,9 +221,11 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
           onPressed: () {
-            if (formKey.currentState!.validate()) {
-              //do submit
-            }
+            // if (formKey.currentState!.validate()) {
+            //   //do submit
+            // }
+            model.intNull = null;
+            model.commit();
           },
           child: const Text("Submit"),
         ),
