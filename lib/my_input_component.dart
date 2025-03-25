@@ -114,7 +114,9 @@ class InputComponentState<T> extends State<InputComponent<T>> {
   @override
   void didUpdateWidget(covariant InputComponent<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    setValue();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setValue();
+    });
   }
 
   void setValue() {
