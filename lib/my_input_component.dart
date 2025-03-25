@@ -104,6 +104,12 @@ class InputComponentState<T> extends State<InputComponent<T>> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    model.controller.dispose();
+  }
+
+  @override
   void didUpdateWidget(covariant InputComponent<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     setValue();
