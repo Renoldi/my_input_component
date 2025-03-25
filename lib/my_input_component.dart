@@ -99,8 +99,10 @@ class InputComponentState<T> extends State<InputComponent<T>> {
 
   @override
   initState() {
-    setValue();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setValue();
+    });
   }
 
   @override
