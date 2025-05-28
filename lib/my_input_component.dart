@@ -420,6 +420,7 @@ class InputComponentState<T> extends State<InputComponent<T>> {
                 lastDate: lastDate,
                 cancelText: widget.cancelText,
                 confirmText: widget.confirmText,
+                locale: Locale(widget.locale.split('-')[0]),
               );
               if (date != null) {
                 if (widget.isIncludeTime) {
@@ -465,6 +466,7 @@ class InputComponentState<T> extends State<InputComponent<T>> {
                 cancelText: widget.cancelText,
                 confirmText: widget.saveTaxt,
                 saveText: widget.saveTaxt,
+                locale: Locale(widget.locale.split('-')[0]),
                 initialDateRange:
                     widget.value == null
                         ? DateTimeRange(
@@ -582,6 +584,7 @@ class InputComponentState<T> extends State<InputComponent<T>> {
                                         const Duration(days: 365),
                                       ),
                                   lastDate: lastDate,
+                                  locale: Locale(widget.locale.split('-')[0]),
                                 );
                                 if (date != null) {
                                   if (widget.isIncludeTime) {
@@ -636,6 +639,7 @@ class InputComponentState<T> extends State<InputComponent<T>> {
                                   cancelText: widget.cancelText,
                                   confirmText: widget.saveTaxt,
                                   saveText: widget.saveTaxt,
+                                  locale: Locale(widget.locale.split('-')[0]),
                                   initialDateRange:
                                       widget.value == null
                                           ? DateTimeRange(
