@@ -40,16 +40,16 @@ class InputComponent<T> extends StatefulWidget {
   final FocusNode? focusNode;
   final FocusNode? nextFocusNode;
   final bool isPin;
-  final String saveTaxt;
-  final String cancelText;
-  final String confirmText;
+  final String? saveText;
+  final String? cancelText;
+  final String? confirmText;
 
   const InputComponent({
     super.key,
     this.locale = "id-ID",
-    this.cancelText = "Cancel",
-    this.saveTaxt = "Save",
-    this.confirmText = "Confirm",
+    this.cancelText,
+    this.saveText,
+    this.confirmText,
     required this.label,
     this.value,
     required this.onChanged,
@@ -464,8 +464,8 @@ class InputComponentState<T> extends State<InputComponent<T>> {
               final date = await showDateRangePicker(
                 context: context,
                 cancelText: widget.cancelText,
-                confirmText: widget.saveTaxt,
-                saveText: widget.saveTaxt,
+                confirmText: widget.confirmText ?? widget.confirmText,
+                saveText: widget.saveText ?? widget.saveText,
                 locale: Locale(widget.locale.split('-')[0]),
                 initialDateRange:
                     widget.value == null
@@ -536,8 +536,10 @@ class InputComponentState<T> extends State<InputComponent<T>> {
                               onPressed: () async {
                                 TimeOfDay? date = await showTimePicker(
                                   context: context,
-                                  cancelText: widget.cancelText,
-                                  confirmText: widget.saveTaxt,
+                                  cancelText:
+                                      widget.cancelText ?? widget.cancelText,
+                                  confirmText:
+                                      widget.confirmText ?? widget.confirmText,
                                   initialTime:
                                       widget.value == null
                                           ? TimeOfDay.now()
@@ -571,8 +573,10 @@ class InputComponentState<T> extends State<InputComponent<T>> {
                                     widget.value as DateTime?;
                                 final date = await showDatePicker(
                                   context: context,
-                                  cancelText: widget.cancelText,
-                                  confirmText: widget.saveTaxt,
+                                  cancelText:
+                                      widget.cancelText ?? widget.cancelText,
+                                  confirmText:
+                                      widget.confirmText ?? widget.confirmText,
                                   initialDatePickerMode: widget.datePickerMode,
                                   initialDate:
                                       initialDate.isAfter(lastDate)
@@ -595,8 +599,12 @@ class InputComponentState<T> extends State<InputComponent<T>> {
                                     TimeOfDay? timeOfDay = await showTimePicker(
                                       context: context,
                                       initialTime: timeOfDays,
-                                      cancelText: widget.cancelText,
-                                      confirmText: widget.saveTaxt,
+                                      cancelText:
+                                          widget.cancelText ??
+                                          widget.cancelText,
+                                      confirmText:
+                                          widget.confirmText ??
+                                          widget.confirmText,
                                       builder: (context, childWidget) {
                                         return MediaQuery(
                                           data: MediaQuery.of(context).copyWith(
@@ -636,9 +644,11 @@ class InputComponentState<T> extends State<InputComponent<T>> {
                               onPressed: () async {
                                 final date = await showDateRangePicker(
                                   context: context,
-                                  cancelText: widget.cancelText,
-                                  confirmText: widget.saveTaxt,
-                                  saveText: widget.saveTaxt,
+                                  cancelText:
+                                      widget.cancelText ?? widget.cancelText,
+                                  confirmText:
+                                      widget.confirmText ?? widget.confirmText,
+                                  saveText: widget.saveText ?? widget.saveText,
                                   locale: Locale(widget.locale.split('-')[0]),
                                   initialDateRange:
                                       widget.value == null
